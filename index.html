@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karim Café - Restaurant gastronomique à Rufisque</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37',
+                        dark: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'playfair': ['"Playfair Display"', 'serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        
+        .menu-item:hover .menu-overlay {
+            opacity: 1;
+        }
+        
+        .review-card {
+            transition: all 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.9);
+            color: #D4AF37;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            bottom: 0;
+        }
+        
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-dark text-white font-montserrat">
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-90 fixed w-full z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="text-gold text-2xl font-bold font-playfair">KARIM CAFÉ</a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#accueil" class="text-gold hover:text-white transition">Accueil</a>
+                    <a href="#menu" class="text-gold hover:text-white transition">Menu</a>
+                    <a href="#galerie" class="text-gold hover:text-white transition">Galerie</a>
+                    <a href="#avis" class="text-gold hover:text-white transition">Avis</a>
+                    <a href="#contact" class="text-gold hover:text-white transition">Contact</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="text-gold focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero flex items-center justify-center text-center pt-20">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-6xl font-bold text-gold font-playfair mb-6">KARIM CAFÉ</h1>
+            <p class="text-xl md:text-2xl text-white mb-8">Une expérience culinaire exceptionnelle</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#menu" class="bg-gold text-black px-6 py-3 rounded font-medium hover:bg-opacity-90 transition">Notre Menu</a>
+                <a href="#reservation" class="border border-gold text-gold px-6 py-3 rounded font-medium hover:bg-gold hover:text-black transition">Réserver</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Karim Café" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl font-bold text-gold font-playfair mb-6">Notre Histoire</h2>
+                    <p class="text-gray-300 mb-4"> Karim Café est rapidement devenu une référence gastronomique à Rufisque. Notre passion pour les saveurs authentiques et les produits locaux de qualité nous a permis de créer une expérience culinaire unique.</p>
+                    <div class="flex items-center">
+                        <div class="mr-4 text-gold">
+                            <i class="fas fa-utensils text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Cuisine d'exception</h3>
+                            <p class="text-gray-300">Produits frais et de saison</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gold font-playfair mb-4">Notre Menu</h2>
+                <div class="w-20 h-1 bg-gold mx-auto"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-12">
+                
+                <!-- Plats principaux -->
+                <div class="bg-black p-6 rounded-lg shadow-lg">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gold font-playfair">Plats Principaux</h3>
+                    </div>
+                    <div class="space-y-6">
+                         
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PIZZA REINE</h4>
+                                    <p class="text-gray-400 text-sm">Jambon,champignon,fromage,tomate</p>
+                                </div>
+                                <span class="text-gold font-bold">5 000 FCFA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PIZZA MARGARITA</h4>
+                                    <p class="text-gray-400 text-sm">Sauce tomate,fromage</p>
+                                </div>
+                                <span class="text-gold font-bold">4 000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PIZZA 4 SAISONS</h4>
+                                    <p class="text-gray-400 text-sm"<p>Fruit de mer,poulet,saucisse,tomate,champignon,jambon,fromage</p>
+                                </div>
+                                <span class="text-gold font-bold">6 000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PIZZA AUX POULET</h4>
+                                    <p class="text-gray-400 text-sm"<p>Tomate,fromage,champignon,poulet,maïs</p>
+                                </div>
+                                <span class="text-gold font-bold">6 000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PIZZA VÉGÉTARIENNE</h4>
+                                    <p class="text-gray-400 text-sm"<p>Tomate,oignons,poivrons,tomate cerise,fromage</p>
+                                </div>
+                                <span class="text-gold font-bold">4 000 FCFA</span>
+                            </div>
+                        </div>
+                     <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CROQUE MONSIEUR KARIM CAFÉ</h4>
+                                    <p class="text-gray-400 text-sm"<p>Petite salade,jambon,camembert, fromage</p>
+                                </div>
+                                <span class="text-gold font-bold">4 500 FCFA</span>
+                            </div>
+                        </div>   
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CROQUE MONSIEUR GOURMAND</h4>
+                                    <p class="text-gray-400 text-sm"<p>Petite salade,poulet mariné,jambon,camembert,fromage</p>
+                                </div>
+                                <span class="text-gold font-bold">4 500 FCFA</span>
+                            </div>
+                        </div> 
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">TACOS POULET</h4>
+                                </div>
+                                <span class="text-gold font-bold">2 500 FCFA</span>
+                            </div>
+                        </div> 
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">TACOS VIANDE</h4>
+                                </div>
+                                <span class="text-gold font-bold">2 500 FCFA</span>
+                            </div>
+                        </div> 
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">BURGER VIANDE</h4>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div> 
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">BURGER POULET</h4>
+                                </div>
+                                <span class="text-gold font-bold">2 000 FCFA</span>
+                            </div>
+                        </div> 
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CHAWARMA POULET</h4>
+                                </div>
+                                <span class="text-gold font-bold">2 000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CHAWARMA VIANDE</h4>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desserts -->
+                <div class="bg-black p-6 rounded-lg shadow-lg">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gold font-playfair">Desserts</h3>
+                    </div>
+                    <div class="space-y-6">
+                    </div>
+                        
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CRÊPES SPÉCULOOS</h4>
+                                    <p class="text-gray-400 text-sm">Spéculoos,glace à la vanille,deux chocolats ( lait - blanc)</p>
+                                </div>
+                                <span class="text-gold font-bold">4 000 FCFA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CPÊPES COOKIES</h4>
+                                    <p class="text-gray-400 text-sm">Crêpes fourrée aux cookies,deux chocolats ( lait - noire)</p>
+                                </div>
+                                <span class="text-gold font-bold">4 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CRÊPES AUMÔNIÈRE KARIM CAFÉ</h4>
+                                    <p class="text-gray-400 text-sm">Crème cheesecake,fraise et chocolat au lait </p>
+                                </div>
+                                <span class="text-gold font-bold">4 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PANCAKES CHEESECAKE</h4>
+                                    <p class="text-gray-400 text-sm">Cinq pancakes,crème cheesecake à la pistache,deux chocolats ( lait - aux pistache )</p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PANCAKES AU CARAMEL ET À LA CANNELLE</h4>
+                                    <p class="text-gray-400 text-sm">Cinq pancakes,sauce caramel, cannelle,sucre glace,chocolat au lait</p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">PANCAKES AUX FRUITS</h4>
+                                    <p class="text-gray-400 text-sm">Cinq pancakes,fruits ( bananes,fraises,ananas) et chocolat au lait </p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                         <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">GAUFRES AUX FRUITS</h4>
+                                    <p class="text-gray-400 text-sm">Gaufre Karim,fruits( bananes, fraises, ananas ) et chocolat au lait </p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">GAUFRE À LA CANNELLE</h4>
+                                    <p class="text-gray-400 text-sm"> Gaufre Karim,banane,sauce caramel,cannelle,sucre glace </p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">GAUFRE À LA SAUCE CARAMEL</h4>
+                                    <p class="text-gray-400 text-sm">Gaufre Karim fourrée de glace à la vanille,riz soufflé,caramel,chocolat au lait </p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">GAUFRE AUX TROIS CHOCOLATS</h4>
+                                    <p class="text-gray-400 text-sm">Gaufre Karim,trois chocolats ( blanc - lait - noir )</p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">GAUFRE AUX OREOS</h4>
+                                    <p class="text-gray-400 text-sm">Gaufre Karim,biscuits oreo,glace à la vanille,trois chocolats ( blanc,lait,noir )</p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">GAUFRE CRUNCH</h4>
+                                    <p class="text-gray-400 text-sm">Gaufre Karim,biscuits crunch spéciaux,glace à la vanille,deux chocolats ( blanc - lait )</p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">GAUFRE AUX SPÉCULOOS</h4>
+                                    <p class="text-gray-400 text-sm">Gaufre Karim,SPÉCULOOS,glace à la vanille,deux chocolats ( blanc - lait ) </p>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boissons -->
+                <div class="bg-black p-6 rounded-lg shadow-lg">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gold font-playfair">Boissons</h3>
+                    </div>
+                    <div class="space-y-6">
+                         <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CAFE</h4>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CAFE AU LAIT</h4>
+                                </div>
+                                <span class="text-gold font-bold">2 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CAPPUCINO</h4>
+                                </div>
+                                <span class="text-gold font-bold">3 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CHOCOLAT CHAUD</h4>
+                                </div>
+                                <span class="text-gold font-bold">3 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">THE</h4>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">JUS LOCAUX</h4>
+                                    <p class="text-gray-400 text-sm">Bouye,bissap,gingembre </p>
+                                </div>
+                                <span class="text-gold font-bold">1 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">JUS DE FRUITS PRESSÉS</h4>
+                                    <p class="text-gray-400 text-sm">Orange,Citron</p>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">SODAS</h4>
+                                    <p class="text-gray-400 text-sm">Coca cola,fanta,sprite</p>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">DIABOLO</h4>
+                                    <p class="text-gray-400 text-sm">Fraise ou menthe</p>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">COCKTAIL PASSION ET MENTHE</h4>
+                                    <p class="text-gray-400 text-sm">Sirop du fruit de la passion,sirop de menthe</p>
+                                </div>
+                                <span class="text-gold font-bold">2 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">COCKTAIL DE BOUYE</h4>
+                                    <p class="text-gray-400 text-sm">Fraise,bouye,lait de coco,lait concentré,lait</p>
+                                </div>
+                                <span class="text-gold font-bold">2 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">ORANGE MINT MOJITO</h4>
+                                    <p class="text-gray-400 text-sm">Orange,citron,jus d’orange,sprite</p>
+                                </div>
+                                <span class="text-gold font-bold">2 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">MILKSHAKE OREO</h4>
+                                    <p class="text-gray-400 text-sm">Glace à la vanille,lait concentré,lait,biscuits OREO</p>
+                                </div>
+                                <span class="text-gold font-bold">2 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">MILKSHAKE ERDBEER</h4>
+                                    <p class="text-gray-400 text-sm">Fraise,lait,glace à la vanille</p>
+                                </div>
+                                <span class="text-gold font-bold">2 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">MILKSHAKE NUTELLA</h4>
+                                    <p class="text-gray-400 text-sm">Glace à la vanille,nutella,glaçons,lait</p>
+                                </div>
+                                <span class="text-gold font-bold">2 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CAFE BATIDO OREO</h4>
+                                    <p class="text-gray-400 text-sm">Lait,biscuits OREO,café</p>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">CAFE BATIDO NUTELLA</h4>
+                                    <p class="text-gray-400 text-sm">Lait,nutella,café</p>
+                                </div>
+                                <span class="text-gold font-bold">1 500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">EAU MINERALE 0,5L</h4>
+                                </div>
+                                <span class="text-gold font-bold">500 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">EAU MINERALE 1,5L</h4>
+                                </div>
+                                <span class="text-gold font-bold">1 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">EAU PÉTILLANTE</h4>
+                                </div>
+                                <span class="text-gold font-bold">1 000 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galerie" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gold font-playfair mb-4">Galerie</h2>
+                <div class="w-20 h-1 bg-gold mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="pizza.jpg" alt="pizza" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">PIZZA</h3>
+                    <div class="gallery-overlay">
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(24 avis)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="burger.jpg" alt="BURGER" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">BURGER</h3>
+                    <div class="gallery-overlay">
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(36 avis)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="chawarma.jpg" alt="CHAWARMA" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">CHAWARMA</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">CHAWARMA</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(18 avis)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="tacos.jpg" alt="TACOS" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">TACOS</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">TACOS</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(29 avis)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="gaufre.jpg" alt="GAUFRES" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">GAUFRES</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">GAUFRES</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(15 avis)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="pancake.jpg" alt="PANCAKES" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">PANCAKES</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">PANCAKES</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(25 avis)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="milkshake.jpg" alt="MILKSHAKE" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">MILKSHAKE</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">MILKSHAKE</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(18 avis)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="cafebatido.jpg" alt="cafebatido" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">CAFE BATIDO</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">CAFE BATIDO</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(15 avis)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="cocktail.jpg" alt="COCKTAIL" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">COCKTAIL</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">COCKTAIL</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(12 avis)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 10 -->
+                <div class="gallery-item rounded-lg overflow-hidden relative">
+                    <img src="croquemonsieur.jpg" alt="CROQUE MONSIEUR" class="w-full h-64 object-cover">
+                    <h3 class="text-center text-gold font-bold mt-2">CROQUE MONSIEUR</h3>
+                    <div class="gallery-overlay">
+                        <h3 class="font-bold text-lg">CROQUE MONSIEUR</h4>
+                        <div class="flex items-center mt-2">
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-sm">(22 avis)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="avis" class="py-20 bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gold font-playfair mb-4">Avis Clients</h2>
+                <div class="w-20 h-1 bg-gold mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="review-card bg-black p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div>
+                            <h4 class="font-bold text-white">Aïcha Diop</h4>
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Le burger est tout simplement exceptionnel ! Les saveurs sont authentiques et le service impeccable. Je recommande vivement ce restaurant."</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card bg-black p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div>
+                            <h4 class="font-bold text-white">Mamadou Ndiaye</h4>
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Ambiance chaleureuse et cuisine raffinée. Les gaufres sont les meilleurs que j'ai jamais goûtés. Un vrai régal pour les papilles !"</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card bg-black p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div>
+                            <h4 class="font-bold text-white">Fatou Fall</h4>
+                            <div class="flex text-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Nous avons fêté l'anniversaire de mon mari ici et tout était parfait : la nourriture, le service et l'ambiance. Les milkshakes sont divins !"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl font-bold text-gold font-playfair mb-6">Réservez votre table</h2>
+                    <p class="text-gray-300 mb-6">Pour garantir votre place dans notre restaurant, contactez-nous via WhatsApp ou par téléphone.</p>
+                    
+                    <div class="bg-dark p-6 rounded-lg shadow-lg mb-8">
+                        <h3 class="text-xl font-bold text-gold mb-4">Horaires d'ouverture</h3>
+                        <ul class="space-y-2">
+                            <li class="flex justify-between text-gray-300">
+                                <span>Lundi - Vendredi</span>
+                                <span>11h - 23h</span>
+                            </li>
+                            <li class="flex justify-between text-gray-300">
+                                <span>Samedi</span>
+                                <span>11h - Minuit</span>
+                            </li>
+                            <li class="flex justify-between text-gray-300">
+                                <span>Dimanche</span>
+                                <span>12h - 22h</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://wa.me/22178787857148?text=Bonjour%20Karim%20Café,%20je%20souhaite%20réserver%20une%20table%20pour%20%5Bnombre%20de%20personnes%5D%20personnes%20le%20%5Bdate%5D%20à%20%5Bheure%5D.%20Merci%20!" class="bg-green-600 text-white px-6 py-3 rounded font-medium hover:bg-green-700 transition inline-flex items-center">
+                        <i class="fab fa-whatsapp text-xl mr-2"></i> Réserver via WhatsApp!
+                    </a>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="bg-dark p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-gold mb-4">Nous trouver</h3>
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe src="https://maps.google.com/maps?q=14.733855,-17.286812&z=15&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-gray-300"><i class="fas fa-map-marker-alt text-gold mr-2"></i>Rufisque, Sénégal</p>
+                            <p class="text-gray-300"><i class="fas fa-phone text-gold mr-2"></i> +221 78 78 785 71 48</p>
+                            <p class="text-gray-300"><i class="fas fa-envelope text-gold mr-2"></i> abdoukarimc221@icloud.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-gold text-2xl font-bold font-playfair">KARIM CAFÉ</a>
+                    <p class="text-gray-400 mt-2">Une expérience culinaire inoubliable à Rufisque</p>
+                </div>
+                
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Karim Café. Tous droits réservés.</p>
+                <div class="flex space-x-4">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/221787857148" class="fixed bottom-6 right-6 bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg floating-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Simple mobile menu toggle
+        document.querySelector('nav button').addEventListener('click', function() {
+            const menu = document.querySelector('.hidden.md\\:flex');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col');
+            menu.classList.toggle('absolute');
+            menu.classList.toggle('top-16');
+            menu.classList.toggle('left-0');
+            menu.classList.toggle('right-0');
+            menu.classList.toggle('bg-black');
+            menu.classList.toggle('p-4');
+            menu.classList.toggle('space-y-4');
+            menu.classList.toggle('space-x-8');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                const menu = document.querySelector('.hidden.md\\:flex');
+                if (menu.classList.contains('flex-col')) {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'right-0', 'bg-black', 'p-4', 'space-y-4');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
